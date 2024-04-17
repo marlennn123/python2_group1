@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+model_names = [name for name in dir() if isinstance(eval(name), type) and issubclass(eval(name), models.Model)]
+
+
+for name in model_names:
+    admin.site.register(eval(name))
